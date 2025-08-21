@@ -1,0 +1,39 @@
+{
+  "positions": {
+    "Head Boy": {
+      "John": 0,
+      "Alex": 0
+    },
+    "Head Girl": {
+      "Sophia": 0,
+      "Emma": 0
+    },
+    "Deputy Head Girl": {
+      "Olivia": 0,
+      "Ava": 0
+    },
+    "Deputy Head Boy": {
+      "Liam": 0,
+      "Noah": 0
+    },
+    "Sports Captain": {
+      "Ethan": 0,
+      "James": 0
+    },
+    "Deputy Sports Captain": {
+      "Lucas": 0,
+      "Mason": 0
+    },
+    "Cultural Secretary": {
+      "Isabella": 0,
+      "Mia": 0
+    },
+    "Deputy Cultural Secretary": {
+      "Charlotte": 0,
+      "Amelia": 0
+    }
+  },
+  "admin": {
+    "pin": "1234"
+  }
+}

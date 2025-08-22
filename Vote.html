@@ -106,7 +106,7 @@
   .vote-btn.selected { background: #28a745; }
 
   /* PIN */
-  #pin-section input {
+  #pin-section input, .pin-entry-container input {
     padding: 12px;
     border-radius: 10px;
     border: 2px solid #ddd;
@@ -115,11 +115,21 @@
     width: 200px;
     transition: all 0.3s ease;
   }
-  #pin-section input:focus {
+  #pin-section input:focus, .pin-entry-container input:focus {
     border-color: #5a4ef1;
     box-shadow: 0 0 8px rgba(90,78,241,0.3);
   }
-  #pin-section.shake { animation: shake 0.4s; }
+  .pin-entry-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  #pin-section.shake, .pin-entry-container.shake { animation: shake 0.4s; }
   @keyframes shake {
     0%,100% { transform: translateX(0); }
     25% { transform: translateX(-8px); }
@@ -170,14 +180,12 @@
 </head>
 <body>
 
-<!-- Nav -->
 <nav>
   <a href="#" id="nav-home" class="active" data-target="home">🏠 Home</a>
   <a href="#" id="nav-vote" data-target="vote">👥 Vote</a>
   <a href="#" id="nav-results" data-target="results">📊 Results</a>
 </nav>
 
-<!-- Home -->
 <section id="home" class="active">
   <h1>Welcome to the School Voting System</h1>
   <p class="subtitle">Your voice matters. Participate in the future of our school.</p>
@@ -185,14 +193,21 @@
   <button class="btn" id="startVotingBtn">Start Voting</button>
 </section>
 
-<!-- Vote -->
 <section id="vote">
-  <h2>Vote for Your Candidates</h2>
-  <div id="positions-container"></div>
-  <button class="btn" id="submitVotesBtn">Submit All Votes</button>
+  <div id="pin-entry-vote" class="pin-entry-container">
+    <h2>Enter PIN to Unlock Voting</h2>
+    <input type="password" id="votePinInput" placeholder="Enter PIN">
+    <button class="btn" id="unlockVoteBtn">Unlock Voting</button>
+  </div>
+  <div id="voting-content" style="display:none;">
+    <h2 style="font-weight: 300; font-size: 2.2em; margin-bottom: 20px;">
+        <span style="font-weight: 600;">Vote</span>
+    </h2>
+    <div id="positions-container"></div>
+    <button class="btn" id="submitVotesBtn">Submit All Votes</button>
+  </div>
 </section>
 
-<!-- Results (PIN + content) -->
 <section id="results">
   <h2>Results (Admin Access)</h2>
   <div id="pin-section">
@@ -205,6 +220,7 @@
 <script>
     /* --- Config / Data --- */
     const BACKEND_URL = "http://localhost:3000";
+    const VOTING_PIN = "123";
 
     const candidateImages = {
         "John": "https://randomuser.me/api/portraits/men/1.jpg",
@@ -273,7 +289,6 @@
     document.addEventListener("DOMContentLoaded", async () => {
         await fetchPositions();
         userIdEl.textContent = Date.now();
-        renderVotingUI(); // Render the UI with fetched data
     });
 
     /* --- Voting UI render --- */
@@ -323,7 +338,23 @@
     /* --- Start voting --- */
     document.getElementById("startVotingBtn").addEventListener("click", () => {
         showSection("vote");
-        renderVotingUI();
+        document.getElementById("pin-entry-vote").style.display = "flex";
+        document.getElementById("voting-content").style.display = "none";
+    });
+
+    /* --- Unlock Voting --- */
+    document.getElementById("unlockVoteBtn").addEventListener("click", () => {
+        const inputPin = document.getElementById("votePinInput").value;
+        const pinBox = document.getElementById("pin-entry-vote");
+        if (inputPin === VOTING_PIN) {
+            pinBox.style.display = "none";
+            document.getElementById("voting-content").style.display = "block";
+            renderVotingUI();
+        } else {
+            alert("Incorrect PIN. Please try again.");
+            pinBox.classList.add("shake");
+            setTimeout(() => pinBox.classList.remove("shake"), 400);
+        }
     });
 
     /* --- Submit votes --- */
@@ -346,7 +377,8 @@
                 positions.forEach(p => selections[p] = null);
                 showSection("home");
                 userIdEl.textContent = Date.now();
-                renderVotingUI();
+                document.getElementById("pin-entry-vote").style.display = "flex";
+                document.getElementById("voting-content").style.display = "none";
             } else {
                 alert("Failed to submit votes.");
             }

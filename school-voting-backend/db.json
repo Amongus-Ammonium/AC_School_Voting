@@ -1,36 +1,36 @@
 {
   "positions": {
     "Head Boy": {
-      "John": 0,
+      "John": 1,
       "Alex": 0
     },
     "Head Girl": {
       "Sophia": 0,
-      "Emma": 0
+      "Emma": 1
     },
     "Deputy Head Girl": {
-      "Olivia": 0,
+      "Olivia": 1,
       "Ava": 0
     },
     "Deputy Head Boy": {
       "Liam": 0,
-      "Noah": 0
+      "Noah": 1
     },
     "Sports Captain": {
-      "Ethan": 0,
+      "Ethan": 1,
       "James": 0
     },
     "Deputy Sports Captain": {
-      "Lucas": 0,
+      "Lucas": 1,
       "Mason": 0
     },
     "Cultural Secretary": {
       "Isabella": 0,
-      "Mia": 0
+      "Mia": 1
     },
     "Deputy Cultural Secretary": {
       "Charlotte": 0,
-      "Amelia": 0
+      "Amelia": 1
     }
   },
   "admin": {

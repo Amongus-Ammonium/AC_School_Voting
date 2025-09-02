@@ -5,498 +5,498 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>School Voting System</title>
 <style>
-  /* Base layout */
-  body {
-    font-family: "Arial", sans-serif;
-    margin: 0;
-    background: #f4f6fa;
-    color: #333;
-  }
-  nav {
-    background: #fff;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: center;
-    
-    border-radius: 50px;
-    gap: 20px;
-    width: 60%;
-    margin: 30px auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  nav a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #444;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-  }
-  nav a.active {
-    background: #5a4ef1;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(90,78,241,0.3);
-  }
+  /* Base layout */
+  body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    background: #f4f6fa;
+    color: #333;
+  }
+  nav {
+    background: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    
+    border-radius: 50px;
+    gap: 20px;
+    width: 60%;
+    margin: 30px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #444;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  nav a.active {
+    background: #5a4ef1;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(90,78,241,0.3);
+  }
 
-  /* Sections */
-  section {
-    display: none;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-  }
-  section.active { display: block; }
+  /* Sections */
+  section {
+    display: none;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+  }
+  section.active { display: block; }
 
-  /* Headings & buttons */
-  h1 { font-size: 42px; font-weight: 800; margin: 0 0 10px; }
-  .subtitle { font-size: 18px; color: #666; margin: 0 0 25px; }
-  .btn {
-    background: #5a4ef1;
-    color: #fff;
-    padding: 14px 26px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease;
-  }
-  .btn:hover { background: #4b40e4; }
-  .btn:active { transform: scale(0.95); }
+  /* Headings & buttons */
+  h1 { font-size: 42px; font-weight: 800; margin: 0 0 10px; }
+  .subtitle { font-size: 18px; color: #666; margin: 0 0 25px; }
+  .btn {
+    background: #5a4ef1;
+    color: #fff;
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+  }
+  .btn:hover { background: #4b40e4; }
+  .btn:active { transform: scale(0.95); }
 
-  /* Voting UI */
-  .position-block {
-    margin: 30px 0;
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    text-align: left;
-  }
-  .position-block h3 { margin: 0 0 15px; }
-  .candidates {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .candidate-card {
-    text-align: center;
-    background: #f9f9ff;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    width: 200px;
-  }
-  .candidate-card img {
-    width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px;
-  }
-  .vote-btn {
-    display: block; width: 100%;
-    background: #5a4ef1; color: #fff;
-    padding: 10px; border: none; border-radius: 8px;
-    cursor: pointer; font-size: 16px; font-weight: bold;
-    transition: background 0.2s, transform 0.1s ease;
-  }
-  .vote-btn:hover { background: #4b40e4; }
-  .vote-btn:active {
-    background: #4036d9; /* darker while pressed */
-    transform: scale(0.96);
-  }
-  .vote-btn.selected { background: #28a745; }
+  /* Voting UI */
+  .position-block {
+    margin: 30px 0;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left;
+  }
+  .position-block h3 { margin: 0 0 15px; }
+  .candidates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .candidate-card {
+    text-align: center;
+    background: #f9f9ff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 200px;
+  }
+  .candidate-card img {
+    width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px;
+  }
+  .vote-btn {
+    display: block; width: 100%;
+    background: #5a4ef1; color: #fff;
+    padding: 10px; border: none; border-radius: 8px;
+    cursor: pointer; font-size: 16px; font-weight: bold;
+    transition: background 0.2s, transform 0.1s ease;
+  }
+  .vote-btn:hover { background: #4b40e4; }
+  .vote-btn:active {
+    background: #4036d9; /* darker while pressed */
+    transform: scale(0.96);
+  }
+  .vote-btn.selected { background: #28a745; }
 
-  /* PIN */
-  #pin-section input, .pin-entry-container input {
-    padding: 12px;
-    border-radius: 10px;
-    border: 2px solid #ddd;
-    font-size: 18px;
-    outline: none;
-    width: 200px;
-    transition: all 0.3s ease;
-  }
-  #pin-section input:focus, .pin-entry-container input:focus {
-    border-color: #5a4ef1;
-    box-shadow: 0 0 8px rgba(90,78,241,0.3);
-  }
-  .pin-entry-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 30px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  #pin-section.shake, .pin-entry-container.shake { animation: shake 0.4s; }
-  @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    25% { transform: translateX(-8px); }
-    50% { transform: translateX(8px); }
-    75% { transform: translateX(-8px); }
-  }
+  /* PIN */
+  #pin-section input, .pin-entry-container input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    font-size: 18px;
+    outline: none;
+    width: 200px;
+    transition: all 0.3s ease;
+  }
+  #pin-section input:focus, .pin-entry-container input:focus {
+    border-color: #5a4ef1;
+    box-shadow: 0 0 8px rgba(90,78,241,0.3);
+  }
+  .pin-entry-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  #pin-section.shake, .pin-entry-container.shake { animation: shake 0.4s; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+  }
 
-  /* Results (improved) */
-  #resultsContent {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .result-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-    text-align: left;
-    transition: transform 0.2s;
-  }
-  .result-card:hover { transform: translateY(-4px); }
-  .result-card h3 { font-size: 22px; margin: 0 0 10px; }
-  .winner-badge {
-    display: inline-block;
-    background: #28a745;
-    color: #fff;
-    font-size: 13px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-left: 10px;
-  }
-  .chart-container { margin-top: 10px; }
-  .chart-bar {
-    height: 28px;
-    border-radius: 8px;
-    margin: 8px 0;
-    color: #fff;
-    padding-left: 10px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    background: linear-gradient(90deg, #5a4ef1, #7a6ef9);
-  }
+  /* Results (improved) */
+  #resultsContent {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .result-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform 0.2s;
+  }
+  .result-card:hover { transform: translateY(-4px); }
+  .result-card h3 { font-size: 22px; margin: 0 0 10px; }
+  .winner-badge {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+  }
+  .chart-container { margin-top: 10px; }
+  .chart-bar {
+    height: 28px;
+    border-radius: 8px;
+    margin: 8px 0;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    background: linear-gradient(90deg, #5a4ef1, #7a6ef9);
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" id="nav-home" class="active" data-target="home">🏠 Home</a>
-  <a href="#" id="nav-vote" data-target="vote">👥 Vote</a>
-  <a href="#" id="nav-results" data-target="results">📊 Results</a>
+  <a href="#" id="nav-home" class="active" data-target="home">🏠 Home</a>
+  <a href="#" id="nav-vote" data-target="vote">👥 Vote</a>
+  <a href="#" id="nav-results" data-target="results">📊 Results</a>
 </nav>
 
 <section id="home" class="active">
-  <h1>Welcome to the School Voting System</h1>
-  <p class="subtitle">Your voice matters. Participate in the future of our school.</p>
-  <p>Your User ID: <span id="userId"></span></p>
-  <button class="btn" id="startVotingBtn">Start Voting</button>
+  <h1>Welcome to the School Voting System</h1>
+  <p class="subtitle">Your voice matters. Participate in the future of our school.</p>
+  <p>Your User ID: <span id="userId"></span></p>
+  <button class="btn" id="startVotingBtn">Start Voting</button>
 </section>
 
 <section id="vote">
-  <div id="pin-entry-vote" class="pin-entry-container">
-    <h2>Enter PIN to Unlock Voting</h2>
-    <input type="password" id="votePinInput" placeholder="Enter PIN">
-    <button class="btn" id="unlockVoteBtn">Unlock Voting</button>
-  </div>
-  <div id="voting-content" style="display:none;">
-    <h2 style="font-weight: 300; font-size: 2.2em; margin-bottom: 20px;">
-        <span style="font-weight: 600;">Vote</span>
-    </h2>
-    <div id="positions-container"></div>
-    <button class="btn" id="submitVotesBtn">Submit All Votes</button>
-  </div>
+  <div id="pin-entry-vote" class="pin-entry-container">
+    <h2>Enter PIN to Unlock Voting</h2>
+    <input type="password" id="votePinInput" placeholder="Enter PIN">
+    <button class="btn" id="unlockVoteBtn">Unlock Voting</button>
+  </div>
+  <div id="voting-content" style="display:none;">
+    <h2 style="font-weight: 300; font-size: 2.2em; margin-bottom: 20px;">
+        <span style="font-weight: 600;">Vote</span>
+    </h2>
+    <div id="positions-container"></div>
+    <button class="btn" id="submitVotesBtn">Submit All Votes</button>
+  </div>
 </section>
 
 <section id="results">
-  <h2>Results (Admin Access)</h2>
-  <div id="pin-section">
-    <input type="password" id="pinInput" placeholder="Enter PIN"/>
-    <button class="btn" id="unlockBtn">Unlock Results</button>
-  </div>
-  <div id="resultsContent" style="display:none;"></div>
+  <h2>Results (Admin Access)</h2>
+  <div id="pin-section">
+    <input type="password" id="pinInput" placeholder="Enter PIN"/>
+    <button class="btn" id="unlockBtn">Unlock Results</button>
+  </div>
+  <div id="resultsContent" style="display:none;"></div>
 </section>
 
 <script>
-    /* --- Config / Data --- */
-    const BACKEND_URL = "http://localhost:3000";
-    const VOTING_PIN = "123";
+    /* --- Config / Data --- */
+    const BACKEND_URL = "https://ac-school-voting.onrender.com";
+    const VOTING_PIN = "123";
 
-    const candidateImages = {
-        "John": "https://randomuser.me/api/portraits/men/1.jpg",
-        "Alex": "https://randomuser.me/api/portraits/men/2.jpg",
-        "Sophia": "https://randomuser.me/api/portraits/women/3.jpg",
-        "Emma": "https://randomuser.me/api/portraits/women/4.jpg",
-        "Olivia": "https://randomuser.me/api/portraits/women/5.jpg",
-        "Ava": "https://randomuser.me/api/portraits/women/6.jpg",
-        "Liam": "https://randomuser.me/api/portraits/men/7.jpg",
-        "Noah": "https://randomuser.me/api/portraits/men/8.jpg",
-        "Ethan": "https://randomuser.me/api/portraits/men/9.jpg",
-        "James": "https://randomuser.me/api/portraits/men/10.jpg",
-        "Lucas": "https://randomuser.me/api/portraits/men/11.jpg",
-        "Mason": "https://randomuser.me/api/portraits/men/12.jpg",
-        "Isabella": "https://randomuser.me/api/portraits/women/13.jpg",
-        "Mia": "https://randomuser.me/api/portraits/women/14.jpg",
-        "Charlotte": "https://randomuser.me/api/portraits/women/15.jpg",
-        "Amelia": "https://randomuser.me/api/portraits/women/16.jpg"
-    };
+    const candidateImages = {
+        "John": "https://randomuser.me/api/portraits/men/1.jpg",
+        "Alex": "https://randomuser.me/api/portraits/men/2.jpg",
+        "Sophia": "https://randomuser.me/api/portraits/women/3.jpg",
+        "Emma": "https://randomuser.me/api/portraits/women/4.jpg",
+        "Olivia": "https://randomuser.me/api/portraits/women/5.jpg",
+        "Ava": "https://randomuser.me/api/portraits/women/6.jpg",
+        "Liam": "https://randomuser.me/api/portraits/men/7.jpg",
+        "Noah": "https://randomuser.me/api/portraits/men/8.jpg",
+        "Ethan": "https://randomuser.me/api/portraits/men/9.jpg",
+        "James": "https://randomuser.me/api/portraits/men/10.jpg",
+        "Lucas": "https://randomuser.me/api/portraits/men/11.jpg",
+        "Mason": "https://randomuser.me/api/portraits/men/12.jpg",
+        "Isabella": "https://randomuser.me/api/portraits/women/13.jpg",
+        "Mia": "https://randomuser.me/api/portraits/women/14.jpg",
+        "Charlotte": "https://randomuser.me/api/portraits/women/15.jpg",
+        "Amelia": "https://randomuser.me/api/portraits/women/16.jpg"
+    };
 
-    // Per-voter selections
-    let selections = {};
-    let positions = [];
-    let candidates = {};
+    // Per-voter selections
+    let selections = {};
+    let positions = [];
+    let candidates = {};
 
-    // User ID (simple timestamp for display)
-    const userIdEl = document.getElementById("userId");
+    // User ID (simple timestamp for display)
+    const userIdEl = document.getElementById("userId");
 
-    /* --- Navigation --- */
-    const sections = ["home", "vote", "results"];
-    const navLinks = document.querySelectorAll("nav a");
-    navLinks.forEach(a => a.addEventListener("click", (e) => {
-        e.preventDefault();
-        const target = a.getAttribute("data-target");
-        showSection(target);
-    }));
+    /* --- Navigation --- */
+    const sections = ["home", "vote", "results"];
+    const navLinks = document.querySelectorAll("nav a");
+    navLinks.forEach(a => a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = a.getAttribute("data-target");
+        showSection(target);
+    }));
 
-    function showSection(id) {
-        sections.forEach(s => document.getElementById(s).classList.remove("active"));
-        document.getElementById(id).classList.add("active");
-        navLinks.forEach(a => a.classList.remove("active"));
-        const link = document.querySelector(`nav a[data-target="${id}"]`);
-        if (link) link.classList.add("active");
-    }
+    function showSection(id) {
+        sections.forEach(s => document.getElementById(s).classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        navLinks.forEach(a => a.classList.remove("active"));
+        const link = document.querySelector(`nav a[data-target="${id}"]`);
+        if (link) link.classList.add("active");
+    }
 
-    // --- Data Fetching and UI Rendering ---
-    
-    // Fetch positions and candidates from the backend
-    async function fetchPositions() {
-        try {
-            const response = await fetch(`${BACKEND_URL}/positions`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            positions = data.positions;
-            candidates = data.candidates;
-            positions.forEach(p => selections[p] = null);
-        } catch (error) {
-            console.error('Failed to fetch positions:', error);
-            alert('Failed to load voting data. Please check the server.');
-        }
-    }
-    
-    // Call this function when the page loads
-    document.addEventListener("DOMContentLoaded", async () => {
-        await fetchPositions();
-        userIdEl.textContent = Date.now();
-    });
+    // --- Data Fetching and UI Rendering ---
+    
+    // Fetch positions and candidates from the backend
+    async function fetchPositions() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/positions`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            positions = data.positions;
+            candidates = data.candidates;
+            positions.forEach(p => selections[p] = null);
+        } catch (error) {
+            console.error('Failed to fetch positions:', error);
+            alert('Failed to load voting data. Please check the server.');
+        }
+    }
+    
+    // Call this function when the page loads
+    document.addEventListener("DOMContentLoaded", async () => {
+        await fetchPositions();
+        userIdEl.textContent = Date.now();
+    });
 
-    /* --- Voting UI render --- */
-    const positionsContainer = document.getElementById("positions-container");
+    /* --- Voting UI render --- */
+    const positionsContainer = document.getElementById("positions-container");
 
-    function renderVotingUI() {
-        positionsContainer.innerHTML = "";
-        positions.forEach(pos => {
-            const block = document.createElement("div");
-            block.className = "position-block";
-            block.innerHTML = `<h3>${pos}</h3><div class="candidates"></div>`;
-            const area = block.querySelector(".candidates");
+    function renderVotingUI() {
+        positionsContainer.innerHTML = "";
+        positions.forEach(pos => {
+            const block = document.createElement("div");
+            block.className = "position-block";
+            block.innerHTML = `<h3>${pos}</h3><div class="candidates"></div>`;
+            const area = block.querySelector(".candidates");
 
-            candidates[pos].forEach(name => {
-                const imageUrl = candidateImages[name] || "https://via.placeholder.com/80";
-                const card = document.createElement("div");
-                card.className = "candidate-card";
-                card.innerHTML = `
-                    <img src="${imageUrl}" alt="${name}"/>
-                    <p style="margin:6px 0 10px; font-weight:600;">${name}</p>
-                    <button class="vote-btn">Vote</button>
-                `;
+            candidates[pos].forEach(name => {
+                const imageUrl = candidateImages[name] || "https://via.placeholder.com/80";
+                const card = document.createElement("div");
+                card.className = "candidate-card";
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="${name}"/>
+                    <p style="margin:6px 0 10px; font-weight:600;">${name}</p>
+                    <button class="vote-btn">Vote</button>
+                `;
 
-                const btn = card.querySelector(".vote-btn");
-                btn.addEventListener("click", () => {
-                    selections[pos] = name;
-                    area.querySelectorAll(".vote-btn").forEach(b => {
-                        b.classList.remove("selected");
-                        b.textContent = "Vote";
-                    });
-                    btn.classList.add("selected");
-                    btn.textContent = "Selected";
-                });
+                const btn = card.querySelector(".vote-btn");
+                btn.addEventListener("click", () => {
+                    selections[pos] = name;
+                    area.querySelectorAll(".vote-btn").forEach(b => {
+                        b.classList.remove("selected");
+                        b.textContent = "Vote";
+                    });
+                    btn.classList.add("selected");
+                    btn.textContent = "Selected";
+                });
 
-                if (selections[pos] === name) {
-                    btn.classList.add("selected");
-                    btn.textContent = "Selected";
-                }
+                if (selections[pos] === name) {
+                    btn.classList.add("selected");
+                    btn.textContent = "Selected";
+                }
 
-                area.appendChild(card);
-            });
+                area.appendChild(card);
+            });
 
-            positionsContainer.appendChild(block);
-        });
-    }
+            positionsContainer.appendChild(block);
+        });
+    }
 
-    /* --- Start voting --- */
-    document.getElementById("startVotingBtn").addEventListener("click", () => {
-        showSection("vote");
-        document.getElementById("pin-entry-vote").style.display = "flex";
-        document.getElementById("voting-content").style.display = "none";
-    });
+    /* --- Start voting --- */
+    document.getElementById("startVotingBtn").addEventListener("click", () => {
+        showSection("vote");
+        document.getElementById("pin-entry-vote").style.display = "flex";
+        document.getElementById("voting-content").style.display = "none";
+    });
 
-    /* --- Unlock Voting --- */
-    document.getElementById("unlockVoteBtn").addEventListener("click", () => {
-        const inputPin = document.getElementById("votePinInput").value;
-        const pinBox = document.getElementById("pin-entry-vote");
-        if (inputPin === VOTING_PIN) {
-            pinBox.style.display = "none";
-            document.getElementById("voting-content").style.display = "block";
-            renderVotingUI();
-        } else {
-            alert("Incorrect PIN. Please try again.");
-            pinBox.classList.add("shake");
-            setTimeout(() => pinBox.classList.remove("shake"), 400);
-        }
-    });
+    /* --- Unlock Voting --- */
+    document.getElementById("unlockVoteBtn").addEventListener("click", () => {
+        const inputPin = document.getElementById("votePinInput").value;
+        const pinBox = document.getElementById("pin-entry-vote");
+        if (inputPin === VOTING_PIN) {
+            pinBox.style.display = "none";
+            document.getElementById("voting-content").style.display = "block";
+            renderVotingUI();
+        } else {
+            alert("Incorrect PIN. Please try again.");
+            pinBox.classList.add("shake");
+            setTimeout(() => pinBox.classList.remove("shake"), 400);
+        }
+    });
 
-    /* --- Submit votes --- */
-    document.getElementById("submitVotesBtn").addEventListener("click", async () => {
-        const allChosen = positions.every(p => selections[p] !== null);
-        if (!allChosen) {
-            alert("Please vote for all positions!");
-            return;
-        }
+    /* --- Submit votes --- */
+    document.getElementById("submitVotesBtn").addEventListener("click", async () => {
+        const allChosen = positions.every(p => selections[p] !== null);
+        if (!allChosen) {
+            alert("Please vote for all positions!");
+            return;
+        }
 
-        try {
-            const response = await fetch(`${BACKEND_URL}/vote`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ selections })
-            });
+        try {
+            const response = await fetch(`${BACKEND_URL}/vote`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ selections })
+            });
 
-            if (response.ok) {
-                alert("Votes recorded. Next voter, please.");
-                positions.forEach(p => selections[p] = null);
-                showSection("home");
-                userIdEl.textContent = Date.now();
-                document.getElementById("pin-entry-vote").style.display = "flex";
-                document.getElementById("voting-content").style.display = "none";
-            } else {
-                alert("Failed to submit votes.");
-            }
-        } catch (error) {
-            console.error('Failed to submit votes:', error);
-            alert('An error occurred while submitting votes.');
-        }
-    });
+            if (response.ok) {
+                alert("Votes recorded. Next voter, please.");
+                positions.forEach(p => selections[p] = null);
+                showSection("home");
+                userIdEl.textContent = Date.now();
+                document.getElementById("pin-entry-vote").style.display = "flex";
+                document.getElementById("voting-content").style.display = "none";
+            } else {
+                alert("Failed to submit votes.");
+            }
+        } catch (error) {
+            console.error('Failed to submit votes:', error);
+            alert('An error occurred while submitting votes.');
+        }
+    });
 
-    /* --- Results (PIN) --- */
-    document.getElementById("unlockBtn").addEventListener("click", async () => {
-        const input = document.getElementById("pinInput").value;
-        const pinBox = document.getElementById("pin-section");
-        
-        try {
-            const response = await fetch(`${BACKEND_URL}/admin/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ pin: input })
-            });
+    /* --- Results (PIN) --- */
+    document.getElementById("unlockBtn").addEventListener("click", async () => {
+        const input = document.getElementById("pinInput").value;
+        const pinBox = document.getElementById("pin-section");
+        
+        try {
+            const response = await fetch(`${BACKEND_URL}/admin/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pin: input })
+            });
 
-            if (response.ok) {
-                const data = await response.json();
-                if (data.success) {
-                    document.getElementById("resultsContent").style.display = "grid";
-                    renderResults();
-                } else {
-                    pinBox.classList.add("shake");
-                    setTimeout(() => pinBox.classList.remove("shake"), 400);
-                }
-            } else {
-                pinBox.classList.add("shake");
-                setTimeout(() => pinBox.classList.remove("shake"), 400);
-            }
-        } catch (error) {
-            console.error('Failed to login:', error);
-            alert('An error occurred while trying to log in.');
-        }
-    });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById("resultsContent").style.display = "grid";
+                    renderResults();
+                } else {
+                    pinBox.classList.add("shake");
+                    setTimeout(() => pinBox.classList.remove("shake"), 400);
+                }
+            } else {
+                pinBox.classList.add("shake");
+                setTimeout(() => pinBox.classList.remove("shake"), 400);
+            }
+        } catch (error) {
+            console.error('Failed to login:', error);
+            alert('An error occurred while trying to log in.');
+        }
+    });
 
-    /* --- Results render --- */
-    async function renderResults() {
-        try {
-            const response = await fetch(`${BACKEND_URL}/results`);
-            const data = await response.json();
-            const container = document.getElementById("resultsContent");
-            container.innerHTML = `
-                <button class="btn" id="resetVotesBtn" style="margin-top: 20px;">Reset All Votes</button>
-            `;
-            
-            positions.forEach(pos => {
-                const card = document.createElement("div");
-                card.className = "result-card";
-                
-                const positionData = data[pos] || {};
+    /* --- Results render --- */
+    async function renderResults() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/results`);
+            const data = await response.json();
+            const container = document.getElementById("resultsContent");
+            container.innerHTML = `
+                <button class="btn" id="resetVotesBtn" style="margin-top: 20px;">Reset All Votes</button>
+            `;
+            
+            positions.forEach(pos => {
+                const card = document.createElement("div");
+                card.className = "result-card";
+                
+                const positionData = data[pos] || {};
 
-                const sorted = Object.entries(positionData).sort((a,b) => b[1] - a[1]);
-                const topCount = sorted.length ? sorted[0][1] : 0;
-                const winner = sorted.length ? sorted[0][0] : "—";
-                
-                const h = document.createElement("h3");
-                h.innerHTML = `${pos} <span class="winner-badge">Winner: ${winner}</span>`;
-                card.appendChild(h);
+                const sorted = Object.entries(positionData).sort((a,b) => b[1] - a[1]);
+                const topCount = sorted.length ? sorted[0][1] : 0;
+                const winner = sorted.length ? sorted[0][0] : "—";
+                
+                const h = document.createElement("h3");
+                h.innerHTML = `${pos} <span class="winner-badge">Winner: ${winner}</span>`;
+                card.appendChild(h);
 
-                const chart = document.createElement("div");
-                chart.className = "chart-container";
+                const chart = document.createElement("div");
+                chart.className = "chart-container";
 
-                if (!sorted.length) {
-                    const p = document.createElement("p");
-                    p.textContent = "No votes yet.";
-                    card.appendChild(p);
-                } else {
-                    sorted.forEach(([name, count]) => {
-                        const pct = topCount === 0 ? 0 : (count / topCount) * 100;
-                        const bar = document.createElement("div");
-                        bar.className = "chart-bar";
-                        bar.style.width = pct + "%";
-                        bar.textContent = `${name}: ${count}`;
-                        chart.appendChild(bar);
-                    });
-                    card.appendChild(chart);
-                }
-                container.appendChild(card);
-            });
+                if (!sorted.length) {
+                    const p = document.createElement("p");
+                    p.textContent = "No votes yet.";
+                    card.appendChild(p);
+                } else {
+                    sorted.forEach(([name, count]) => {
+                        const pct = topCount === 0 ? 0 : (count / topCount) * 100;
+                        const bar = document.createElement("div");
+                        bar.className = "chart-bar";
+                        bar.style.width = pct + "%";
+                        bar.textContent = `${name}: ${count}`;
+                        chart.appendChild(bar);
+                    });
+                    card.appendChild(chart);
+                }
+                container.appendChild(card);
+            });
 
-            // Add the event listener for the new button
-            document.getElementById("resetVotesBtn").addEventListener("click", async () => {
-                const pin = prompt("Please enter the admin PIN to reset all votes:");
-                if (!pin) {
-                    return; // User cancelled
-                }
+            // Add the event listener for the new button
+            document.getElementById("resetVotesBtn").addEventListener("click", async () => {
+                const pin = prompt("Please enter the admin PIN to reset all votes:");
+                if (!pin) {
+                    return; // User cancelled
+                }
 
-                try {
-                    const response = await fetch(`${BACKEND_URL}/reset`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ pin })
-                    });
-                    
-                    if (response.ok) {
-                        alert("All votes have been successfully reset.");
-                        renderResults(); // Refresh the results to show 0s
-                    } else {
-                        const errorData = await response.json();
-                        alert(`Failed to reset votes: ${errorData.error}`);
-                    }
-                } catch (error) {
-                    console.error('Failed to reset votes:', error);
-                    alert("An error occurred while trying to reset votes.");
-                }
-            });
+                try {
+                    const response = await fetch(`${BACKEND_URL}/reset`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ pin })
+                    });
+                    
+                    if (response.ok) {
+                        alert("All votes have been successfully reset.");
+                        renderResults(); // Refresh the results to show 0s
+                    } else {
+                        const errorData = await response.json();
+                        alert(`Failed to reset votes: ${errorData.error}`);
+                    }
+                } catch (error) {
+                    console.error('Failed to reset votes:', error);
+                    alert("An error occurred while trying to reset votes.");
+                }
+            });
 
-        } catch (error) {
-            console.error('Failed to fetch results:', error);
-            alert('An error occurred while fetching results.');
-        }
-    }
+        } catch (error) {
+            console.error('Failed to fetch results:', error);
+            alert('An error occurred while fetching results.');
+        }
+    }
 </script>
 </body>
 </html>
